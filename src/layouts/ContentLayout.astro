@@ -11,7 +11,7 @@ interface Props {
 
 const {frontmatter} = Astro.props;
 ---
-<Layout title={frontmatter.title}>
+<Layout title={frontmatter.title} description={frontmatter.description}>
     <canvas id="heading-canvas"/>
     <article>
         <h1>{frontmatter.title}</h1>
@@ -103,7 +103,7 @@ const {frontmatter} = Astro.props;
         ctx.clearRect(0, 0, w, h)
         ctx.beginPath()
 
-        const revealDuration = 100;
+        const revealDuration = 40;
         for (let x = 4; x <= Math.min(w, t / revealDuration * w) - 4; x++) {
             const percent = x / w
             const offset = t > revealDuration ? Math.log(t - revealDuration) : 0
