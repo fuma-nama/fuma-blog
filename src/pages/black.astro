@@ -1,0 +1,83 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Black Screen">
+  <div id="circle"></div>
+</Layout>
+<style>
+  #circle {
+    background-image: linear-gradient(
+      to right,
+      rgb(100, 0, 100),
+      rgb(255, 255, 255)
+    );
+    width: 200px;
+    height: 200px;
+    border-radius: 9999px;
+  }
+
+  body {
+    background: black;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+  }
+</style>
+<script>
+  const element = document.getElementById("circle")!;
+  let angle = (2.5 * Math.PI) / 2;
+  let speed = 20;
+  let x = 100,
+    y = 100,
+    w = element.clientWidth,
+    h = element.clientHeight;
+
+  function render() {
+    // prevent it exceeds 360
+    angle %= 2 * Math.PI;
+    x = speed * Math.cos(angle) + x;
+    y = -speed * Math.sin(angle) + y;
+
+    element.style.setProperty("transform", `translate(${x}px, ${y}px)`);
+
+    if (y < 0) {
+      let d = Math.asin(Math.sin(angle));
+      angle =
+        angle < Math.PI / 2 || angle > (3 * Math.PI) / 2
+          ? 2 * Math.PI - d
+          : Math.PI + d;
+      y = 0;
+    }
+
+    if (y + h > document.body.clientHeight) {
+      let d = Math.asin(Math.sin(angle));
+      angle =
+        angle < Math.PI / 2 || angle > (3 * Math.PI) / 2
+          ? 2 * Math.PI - d
+          : Math.PI + d;
+      y = document.body.clientHeight - h;
+    }
+
+    if (x < 0) {
+      let d = Math.acos(Math.cos(angle));
+
+      angle = angle < Math.PI ? Math.PI - d : Math.PI + d;
+      x = 0;
+    }
+
+    if (x + w > document.body.clientWidth) {
+      let d = Math.acos(Math.cos(angle));
+
+      angle = angle < Math.PI ? Math.PI - d : Math.PI + d;
+      x = document.body.clientWidth - w;
+    }
+
+    requestAnimationFrame(() => render());
+  }
+
+  render();
+</script>
