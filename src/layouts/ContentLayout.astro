@@ -91,7 +91,7 @@ const {frontmatter} = Astro.props;
 <script>
     const element = document.getElementById('heading-canvas') as HTMLCanvasElement
     let t = 0;
-    const ctx = element.getContext('2d');
+    const ctx = element.getContext('2d')!;
     const w = element.clientWidth, h = element.clientHeight
 
     element.width = w * window.devicePixelRatio
