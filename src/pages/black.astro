@@ -3,7 +3,9 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Black Screen">
-  <div id="circle"></div>
+  <div id="container">
+    <div id="circle"></div>
+  </div>
 </Layout>
 <style>
   #circle {
@@ -17,11 +19,8 @@ import Layout from "../layouts/Layout.astro";
     border-radius: 9999px;
   }
 
-  body {
+  #container {
     background: black;
-    max-width: none;
-    margin: 0;
-    padding: 0;
     width: 100%;
     height: 100dvh;
     overflow: hidden;
