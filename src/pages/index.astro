@@ -31,7 +31,7 @@ const allPosts = await Astro.glob('./*.md');
     {allPosts.map(post =>
             <Card
                     title={post.frontmatter.title}
-                    href={post.url}
+                    href={post.url!}
                     body={post.frontmatter.description}
                     date={new Date(post.frontmatter.date).toDateString()}
             />
