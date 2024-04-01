@@ -1,0 +1,35 @@
+---
+import "@fontsource-variable/noto-sans-jp"
+
+interface Props {
+    title: string;
+}
+
+const {title} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Astro description"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <meta name="generator" content={Astro.generator}/>
+    <title>{title}</title>
+</head>
+<body>
+<slot/>
+</body>
+</html>
+<style is:global>
+    body {
+        color: rgb(80, 80, 80);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        background: rgb(238, 238, 238);
+        font-family: 'Noto Sans JP Variable', sans-serif;
+        padding: 20px;
+    }
+</style>
